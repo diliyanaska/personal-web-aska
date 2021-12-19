@@ -33,6 +33,14 @@ nav .left ul li a {
     margin-left: 20px;
 }
 
+.left ul li a:hover {
+    background-color: orangered;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
 nav .right {
     flex: 50%;
     padding: 10px;
@@ -102,8 +110,13 @@ nav .right a:hover {
 }
 
 .card .sosmed img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     padding-left: 5px;
     
+}
+
+.card .sosmed img:hover{
+    width: 50px;
+    height: 50px;
 }

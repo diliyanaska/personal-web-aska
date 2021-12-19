@@ -71,7 +71,7 @@ function addBlog(event) {
 function renderBlog(){
   let contentContainer = document.getElementById('contents');
 
-  // contentContainer.innerHTML = ''
+  contentContainer.innerHTML = ''
 
   for (let i = 0; i<blogs.length; i++){
       contentContainer.innerHTML += `<div class="blog-list-item">
@@ -94,6 +94,9 @@ function renderBlog(){
         <p>
           ${(blogs[i].content)}
         </p>
+        <div style="text-align:right; font-size:15; color:grey">
+        ${getDistanceTime(blogs[i].postAt)}
+        </div>
       </div>
     </div>`
   }
@@ -128,3 +131,42 @@ let minutes = time.getMinutes()
 let result =`${date} ${month[monthIndex]} ${year} ${hours}:${minutes} WIB`
 return  result
 }
+
+
+function getDistanceTime(time){
+let timePost = time
+let timeNow = new Date()
+
+let distance = timeNow-timePost
+
+let miliseconds = 1000;
+let seconInMinutes = 60;
+let minutesInHours = 60;
+let hoursInDay = 23;
+
+let distanceDay = Math.floor(distance/ (miliseconds*seconInMinutes*minutesInHours*hoursInDay))
+
+if(distanceDay>=1){
+  return `${distanceDay} Day Ago`
+}else{
+  let distanceHours= Math.floor(distance/(miliseconds*seconInMinutes*minutesInHours))
+  if(distanceHours>=1){
+    return `${distanceHours} Hors Ago`
+  }else{
+    let distanceMinutes = Math.floor(distance/(miliseconds*seconInMinutes))
+    if(distanceMinutes>=1){
+      return `${distanceMinutes} Minuts Ago`
+    }else{
+      let distanceSecons = Math.floor(distance/miliseconds)
+      return `${distanceSecons} Secons Ago`
+    }
+  }
+}
+}
+
+setInterval(()=>{
+
+renderBlog()
+
+},1000)
+
